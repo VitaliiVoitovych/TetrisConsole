@@ -8,6 +8,7 @@ public abstract class Block
     public abstract int Id { get; }
     protected abstract Position[][] Tiles { get; }
     protected abstract Position StartOffset { get; }
+    public int RotateState { get => _rotateState; set => _rotateState = value; }
 
     protected Block()
     {

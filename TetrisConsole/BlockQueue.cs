@@ -21,7 +21,7 @@ public sealed class BlockQueue
         NextBlock = RandomBlock();
     }
 
-    public Block RandomBlock()
+    private Block RandomBlock()
     {
         return _blocks[Random.Shared.Next(_blocks.Length)];
     }
