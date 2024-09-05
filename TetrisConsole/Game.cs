@@ -1,4 +1,5 @@
-﻿using TetrisConsole.Blocks;
+﻿using System.Data.Common;
+using TetrisConsole.Blocks;
 
 namespace TetrisConsole;
 
@@ -87,6 +88,20 @@ public sealed class Game
 
     private void DrawGrid()
     {
+        for (int i = 0; i < Grid.Columns + 1; i++)
+        {
+            Console.SetCursorPosition(i, Grid.Rows);
+            Console.ForegroundColor = ConsoleColor.DarkGray;
+            Console.Write("█");
+        }
+
+        for (int i = 0; i < Grid.Rows + 1; i++)
+        {
+            Console.SetCursorPosition(Grid.Columns, i);
+            Console.ForegroundColor = ConsoleColor.DarkGray;
+            Console.Write("██");
+        }
+
         for (int row = 0; row < Grid.Rows; row++)
         {
             for (int column = 0; column < Grid.Columns; column++)
