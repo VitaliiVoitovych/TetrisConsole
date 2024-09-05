@@ -1,5 +1,7 @@
 ﻿namespace TetrisConsole.Blocks;
 
+//   ██
+// ██████
 public sealed class TBlock : Block
 {
     private readonly Position[][] _tiles = [
