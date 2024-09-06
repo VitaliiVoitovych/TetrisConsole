@@ -44,7 +44,7 @@ public sealed class Game
         {
             Draw();
             Update();
-            Thread.Sleep(59);
+            Thread.Sleep(100);
         }
     }
 
@@ -160,6 +160,8 @@ public sealed class Game
         {
             Grid[tile.Row, tile.Column] = CurrentBlock.Id;
         }
+
+        Grid.ClearFullRows();
 
         CurrentBlock = BlockQueue.GetAndUpdateNextBlock();
     }

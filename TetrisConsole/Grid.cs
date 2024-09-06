@@ -29,4 +29,51 @@ public sealed class Grid
     {
         return IsInside(row, column) && _grid[row, column] == 0;
     }
+
+    public bool IsRowFull(int row)
+    {
+        for (int column = 0; column < Columns; column++)
+        {
+            if (_grid[row, column] == 0)
+            {
+                return false;                
+            }
+        }
+        return true;
+    }
+
+    public void ClearRow(int row)
+    {
+        for (int column = 0; column < Columns; column++)
+        {
+            _grid[row, column] = 0;
+        }
+    }
+
+    public void MoveRowDown(int row, int numRows)
+    {
+        for (int column = 0; column < Columns; column++)
+        {
+            _grid[row + numRows, column] = _grid[row, column];
+            _grid[row, column] = 0;
+        }
+    }
+
+    public void ClearFullRows()
+    {
+        var cleared = 0;
+
+        for (int row = Rows - 1; row >=0 ; row--)
+        {
+            if (IsRowFull(row))
+            {
+                ClearRow(row);
+                cleared++;
+            }
+            else if (cleared > 0)
+            {
+                MoveRowDown(row, cleared);
+            }
+        }
+    }
 }
