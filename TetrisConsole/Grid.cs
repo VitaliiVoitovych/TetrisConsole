@@ -30,6 +30,19 @@ public sealed class Grid
         return IsInside(row, column) && _grid[row, column] == 0;
     }
 
+    public bool IsRowEmpty(int row)
+    {
+        for (int column = 0; column < Columns; column++)
+        {
+            if (_grid[row, column] != 0)
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     public bool IsRowFull(int row)
     {
         for (int column = 0; column < Columns; column++)

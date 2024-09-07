@@ -30,6 +30,7 @@ public sealed class Game
 
     public Grid Grid { get; }
     public BlockQueue BlockQueue { get; }
+    public bool GameOver { get; private set; } = false;
 
     public Game()
     {
@@ -40,12 +41,16 @@ public sealed class Game
 
     public void Start()
     {
-        while (true)
+        while (!GameOver)
         {
             Draw();
             Update();
             Thread.Sleep(100);
         }
+
+        Console.SetCursorPosition(25, 5);
+        Console.WriteLine("Game Over");
+        Console.ReadLine();
     }
 
     private void Draw()
@@ -116,6 +121,11 @@ public sealed class Game
         }
     }
 
+    private bool IsGameOver()
+    {
+        return !(Grid.IsRowEmpty(0) && Grid.IsRowEmpty(1));
+    }
+
     private bool BlockFits()
     {
         foreach (var tile in CurrentBlock.TilesPositions())
@@ -163,7 +173,14 @@ public sealed class Game
 
         Grid.ClearFullRows();
 
-        CurrentBlock = BlockQueue.GetAndUpdateNextBlock();
+        if (IsGameOver())
+        {
+            GameOver = true;
+        }
+        else
+        {
+            CurrentBlock = BlockQueue.GetAndUpdateNextBlock();
+        }
     }
 
     private void RotateBlock()
