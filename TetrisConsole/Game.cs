@@ -1,5 +1,4 @@
-﻿using System.Data.Common;
-using TetrisConsole.Blocks;
+﻿using TetrisConsole.Blocks;
 
 namespace TetrisConsole;
 
